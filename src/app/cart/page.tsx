@@ -6,7 +6,7 @@ import { ArrowRight, Trash2 } from "lucide-react"
 import Image from "next/image"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"
-import { CartItemsType } from "../../../type"
+import { CartItemsType, ShippingFormInputs } from "../../../type"
 
 const steps = [
     {
@@ -80,7 +80,7 @@ const cartItems: CartItemsType = [
 ]
 const CartPage = () => {
     const searchParams = useSearchParams()
-    const [shippingForm, setShippingForm] = useState(null)
+    const [shippingForm, setShippingForm] = useState<ShippingFormInputs>()
     const router = useRouter()
 
     const isActive = parseInt(searchParams.get("step") || "1")
@@ -135,7 +135,7 @@ const CartPage = () => {
                             ))}
                         </div>
 
-                    ) : isActive === 2 ? (<ShippingForm />) : isActive === 3 && shippingForm ? (<PaymentForm />) : <p className="text-sm text-red-500">please fill in the shiooing form to continue.</p>}
+                    ) : isActive === 2 ? (<ShippingForm setShippingForm={setShippingForm} />) : isActive === 3 && shippingForm ? (<PaymentForm />) : <p className="text-sm text-red-500">please fill in the shiooing form to continue.</p>}
                 </div>
                 {/* left side  */}
                 <div className="w-full lg:w-5/12 shadow-lg border-1 border-gray-100 rounded-lg flex flex-col gap-8 p-4 h-max ">
