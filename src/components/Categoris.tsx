@@ -58,13 +58,11 @@ const Categoris = () => {
     const pathName = usePathname()
     const selectedCategory = searchParams.get("category")
 
-    console.log(pathName)
-
     const handelChange = (value: string | null) => {
         const params = new URLSearchParams(searchParams)
         params.set("category", value || "all")
 
-        router.push(`${pathName}?category=${params.toString()}`)
+        router.push(`${pathName}?${params.toString()}`)
     }
 
     return (
