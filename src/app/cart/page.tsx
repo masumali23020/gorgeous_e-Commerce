@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { CartItemsType, ShippingFormInputs } from "../../../type";
+import { CartItemType, ShippingFormInputs } from "../../../type";
 
 const steps = [
   {
@@ -86,7 +86,7 @@ const CartPage = () => {
   const router = useRouter();
   const { cart: cartItems, removeFromCart } = useCartStore();
 
-  const handelDelteCart = (item: CartItemsType): void => {
+  const handelDelteCart = (item: CartItemType): void => {
     removeFromCart(item);
     toast.success("Deleting Cart item");
   };
@@ -98,7 +98,7 @@ const CartPage = () => {
       <h1 className="text-2xl font-medium ">Your Shopping Cart</h1>
       {/* step  */}
       <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 mt-4">
-        {steps.map((step: Step) => (
+        {steps.map((step) => (
           <div
             key={step.id}
             className={`flex items-center gap-2 border-b-2 pb-4 ${
