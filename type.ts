@@ -1,26 +1,24 @@
-import z from "zod"
+import z from "zod";
 
-export type ProductType ={
-    id: string | number,
-    name: string,
-    shortDescription: string,
-    description: string,
-    price: number,
-    sizes: string[],
-    colors: string[],
-    images: Record<string, string>
-
-
-}
-export type ProductsType = ProductType[]
+export type ProductType = {
+  id: string | number;
+  name: string;
+  shortDescription: string;
+  description: string;
+  price: number;
+  sizes: string[];
+  colors: string[];
+  images: Record<string, string>;
+};
+export type ProductsType = ProductType[];
 
 export type CartItemType = ProductType & {
-    quantity:number,
-    selectedSize:string,
-    selectedColor: string
-}
+  quantity: number;
+  selectedSize: string;
+  selectedColor: string;
+};
 
-export type CartItemsType = CartItemType[]
+export type CartItemsType = CartItemType[];
 
 export const shippingFormSchema = z.object({
   name: z.string().min(1, "Name is required!"),
@@ -55,7 +53,7 @@ export type PaymentFormInputs = z.infer<typeof paymentFormSchema>;
 
 export type CartStoreStateType = {
   cart: CartItemsType;
-  // hasHydrated: boolean;
+  hasHydrated: boolean;
 };
 
 export type CartStoreActionsType = {
